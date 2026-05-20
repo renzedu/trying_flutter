@@ -19,6 +19,9 @@ workflows:
       - name: Flutter packages
         script: flutter pub get
 
+      - name: Apply signing
+        script: xcode-project use-profiles
+
       - name: Build Android
         script: flutter build apk --release
 
