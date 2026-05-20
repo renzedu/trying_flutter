@@ -16,6 +16,9 @@ workflows:
       - name: Flutter packages
         script: flutter pub get
 
+      - name: Initialize keychain
+        script: keychain initialize
+
       - name: Add certificates to keychain
         script: keychain add-certificates
 
