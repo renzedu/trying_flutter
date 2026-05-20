@@ -27,7 +27,11 @@ workflows:
 
       - name: Build iOS
         script: |
+          BUNDLE_ID="com.carpiorenzo.tryingflutter"
+          LATEST=$(app-store-connect get-latest-testflight-build-number "$BUNDLE_ID" 2>/dev/null || echo "0")
+          NEXT_BUILD=$((LATEST + 1))
           flutter build ipa --release \
+            --build-number=$NEXT_BUILD \
             --export-options-plist=$HOME/export_options.plist
 
     artifacts:
