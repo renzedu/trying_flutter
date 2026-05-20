@@ -16,15 +16,15 @@ workflows:
       - name: Flutter packages
         script: flutter pub get
 
+      - name: Add certificates to keychain
+        script: keychain add-certificates
+
       - name: Fetch signing files
         script: |
           app-store-connect fetch-signing-files \
             "com.carpiorenzo.tryingflutter" \
             --type IOS_APP_STORE \
             --create
-
-      - name: Add certificates to keychain
-        script: keychain add-certificates
 
       - name: Apply signing
         script: |
