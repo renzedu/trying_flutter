@@ -8,22 +8,25 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.carpiorenzo.tryingflutter
 
     integrations:
       app_store_connect: Codemagic
 
     scripts:
       - name: Get Flutter packages
-        script: |
-          flutter pub get
+        script: flutter pub get
+
+      - name: Set up iOS code signing
+        script: xcode-project use-profiles
 
       - name: Build Android APK
-        script: |
-          flutter build apk --release
+        script: flutter build apk --release
 
       - name: Build iOS IPA
-        script: |
-          flutter build ipa --release
+        script: flutter build ipa --release
 
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
