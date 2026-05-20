@@ -19,9 +19,6 @@ workflows:
       - name: Initialize keychain
         script: keychain initialize
 
-      - name: Add certificates to keychain
-        script: keychain add-certificates
-
       - name: Fetch signing files
         script: |
           app-store-connect fetch-signing-files \
@@ -30,8 +27,7 @@ workflows:
             --create
 
       - name: Apply signing
-        script: |
-          xcode-project use-profiles
+        script: xcode-project use-profiles
 
       - name: Build Android
         script: flutter build apk --release
